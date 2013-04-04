@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" href="stylesheets/sh_css/sh_vampire.min.css" />
 
     <title>Colorever by reterVision</title>
   </head>
@@ -29,11 +29,77 @@
     <div class="container">
       <section id="main_content">
         <h1>colorever</h1>
-
-<p>Help you to put colorful source code in your Evernote.</p>
+        <p>Help you to put colorful source code in your Evernote.</p>
       </section>
-    </div>
+      <textarea id="text-input" oninput="UpdateMD(); sh_highlightDocument();"
+              rows="6" cols="60">Type **Markdown** here.</textarea>
+    <div id="preview"> </div>
 
-    
+    <script src="javascripts/marked.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_c.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_bison.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_caml.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_changelog.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_cpp.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_csharp.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_css.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_desktop.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_diff.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_flex.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_glsl.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_haxe.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_html.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_java.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_javascript.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_javascript_dom.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_latex.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_ldap.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_log.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_lsm.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_m4.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_main.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_makefile.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_oracle.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_pascal.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_perl.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_php.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_prolog.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_properties.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_python.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_ruby.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_scala.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_sh.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_slang.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_sml.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_spec.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_sql.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_tcl.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_url.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_xml.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_code/sh_xorg.min.js"></script>
+    <script>
+      marked.setOptions({
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        langPrefix: 'language-',
+        highlight: function(code, lang) {
+          if (lang === 'js') {
+            return highlighter.javascript(code);
+          }
+          return code;
+        }
+      });
+
+      var $ = function (id) { return document.getElementById(id); };
+      function UpdateMD()
+      {
+        $("preview").innerHTML = marked($("text-input").value);
+      }
+    </script>
+    </div>    
   </body>
 </html>
