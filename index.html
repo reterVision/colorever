@@ -13,7 +13,7 @@
     {
       position: fixed;
       width: 300px;
-      height: 400px;
+      height: 240px;
       left: 50px;
       top: 320px;
     }
@@ -55,10 +55,19 @@
         <p>Help you to put colorful source code in your Evernote.</p>
       </section>
     </div>
+    <br />
     <div class="code_content">
       <div id="preview" class="code_preview"></div>
     </div>
-    <textarea class="code-editor" id="text-input" oninput="UpdateMD(); sh_highlightDocument();">Type **Markdown** here.</textarea>  
+    <textarea class="code-editor" id="text-input" oninput="UpdateMD(); sh_highlightDocument();">
+```c
+#include <stdio.h>
+
+int main(int argc, char** argv)
+{
+    return 0;
+}
+```</textarea>  
 
     <script src="javascripts/marked.js"></script>
     <script type="text/javascript" src="javascripts/sh_code/sh_c.min.js"></script>
@@ -136,6 +145,9 @@
               xNAV.className = "code-editor";
           }
       }
+
+      UpdateMD();
+      sh_highlightDocument();
     </script>
   </body>
 </html>
