@@ -7,6 +7,32 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" href="stylesheets/sh_css/sh_vampire.min.css" />
+    <style type="text/css" media="screen">
+
+    .code-editor
+    {
+      position: fixed;
+      width: 300px;
+      height: 400px;
+      left: 50px;
+      top: 320px;
+    }
+    .code-editor.scrolling
+    {
+      position: fixed;
+      left: 50px;
+      top: 320px;
+    }
+
+    .code_preview
+    {
+      position: absolute;
+      width: 800px;
+      left: 400px;
+      top: 320px;
+    }
+
+    </style>
 
     <title>Colorever by reterVision</title>
   </head>
@@ -23,15 +49,16 @@
         </section>
       </div>
     </header>
-
     <div class="container">
       <section id="main_content">
         <h1>colorever</h1>
         <p>Help you to put colorful source code in your Evernote.</p>
       </section>
-      <textarea id="text-input" oninput="UpdateMD(); sh_highlightDocument();"
-              rows="6" cols="60">Type **Markdown** here.</textarea>
-    <div id="preview"> </div>
+    </div>
+    <div class="code_content">
+      <div id="preview" class="code_preview"></div>
+    </div>
+    <textarea class="code-editor" id="text-input" oninput="UpdateMD(); sh_highlightDocument();">Type **Markdown** here.</textarea>  
 
     <script src="javascripts/marked.js"></script>
     <script type="text/javascript" src="javascripts/sh_code/sh_c.min.js"></script>
@@ -97,7 +124,18 @@
       {
         $("preview").innerHTML = marked($("text-input").value);
       }
+
+      window.addEventListener('scroll', checkPosition, false);
+      function checkPosition()
+      {
+          var xNAV = $("text-input");
+          if(window.scrollY > 50)
+          {
+              xNAV.className = xNAV.className + " scrolling";
+          } else {
+              xNAV.className = "code-editor";
+          }
+      }
     </script>
-    </div>    
   </body>
 </html>
