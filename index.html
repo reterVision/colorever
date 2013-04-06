@@ -15,9 +15,16 @@
       width: 300px;
       height: 240px;
       left: 50px;
-      top: 350px;
+      top: 380px;
     }
     .code-editor.scrolling
+    {
+      position: fixed;
+      left: 50px;
+      top: 380px;
+    }
+
+    .code_style
     {
       position: fixed;
       left: 50px;
@@ -67,7 +74,51 @@ int main(int argc, char** argv)
 {
     return 0;
 }
-```</textarea>  
+``` </textarea>
+    <div class="code_style">
+      Choose Style:
+      <select id="style_select">
+        <option value="sh_acid">acid</option>
+        <option value="sh_berries-dark">berries-dark</option>
+        <option value="sh_berries-dark">berries-light</option>
+        <option value="sh_bipolar">bipolar</option>
+        <option value="sh_blacknblue">blacknblue</option>
+        <option value="sh_bright">bright</option>
+        <option value="sh_contrast">contrast</option>
+        <option value="sh_darkblue">darkblue</option>
+        <option value="sh_darkness">darkness</option>
+        <option value="sh_desert">desert</option>
+        <option value="sh_dull">dull</option>
+        <option value="sh_easter">easter</option>
+        <option value="sh_emacs">emacs</option>
+        <option value="sh_golden">golden</option>
+        <option value="sh_greenlcd">greenlcd</option>
+        <option value="sh_ide-anjuta">ide-anjuta</option>
+        <option value="sh_ide-codewarrior">ide-codewarrior</option>
+        <option value="sh_ide-devcpp">ide-devcpp</option>
+        <option value="sh_ide-eclipse">ide-eclipse</option>
+        <option value="sh_ide-kdev">ide-kdev</option>
+        <option value="sh_ide-msvcpp">ide-msvcpp</option>
+        <option value="sh_kwrite">kwrite</option>
+        <option value="sh_matlab">matlab</option>
+        <option value="sh_navy">navy</option>
+        <option value="sh_nedit">nedit</option>
+        <option value="sh_neon">neon</option>
+        <option value="sh_night">night</option>
+        <option value="sh_pablo">pablo</option>
+        <option value="sh_peachpuff">peachpuff</option>
+        <option value="sh_print">print</option>
+        <option value="sh_rand01">rand01</option>
+        <option value="sh_the">the</option>
+        <option value="sh_typical">typical</option>
+        <option value="sh_vampire">vampire</option>
+        <option value="sh_vim-dark">vim-dark</option>
+        <option value="sh_vim">vim</option>
+        <option value="sh_whatis">whatis</option>
+        <option value="sh_whitengrey">whitengrey</option>
+        <option value="sh_zellner">zellner</option>
+      </select>
+    </div>
 
     <script src="javascripts/marked.js"></script>
     <script type="text/javascript" src="javascripts/sh_code/sh_c.min.js"></script>
@@ -148,6 +199,21 @@ int main(int argc, char** argv)
 
       UpdateMD();
       sh_highlightDocument();
+
+      function loadcss(url) {
+        var head = document.getElementsByTagName("head")[0],
+        link = document.createElement("link");
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = url;
+        head.appendChild(link);
+        return link;
+      }
+      $("style_select").addEventListener("change", function(ev) {
+        css = $("style_select").options[$("style_select").selectedIndex].value;
+        css = "stylesheets/sh_css/" + css + ".min.css";
+        loadcss(css);
+      }, false);
     </script>
   </body>
 </html>
