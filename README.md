@@ -21,8 +21,7 @@ import requests
 
 r = requests.get("http://www.google.com")
 
-print r
+print r```
 
-```
 
 Now it support as many languages as SHJS supports.
